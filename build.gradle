@@ -25,11 +25,6 @@ base {
     archivesName = project.archives_base_name
 }
 
-        resources {
-            srcDir '../../../../src/better-slab/fabric/1.21.1/resources'
-        }
-    }
-}
 
 loom {
     mods {
@@ -51,7 +46,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    // modCompileOnly files("../place-anywhere-core/build/libs/placeanywhere-0.1.0+VERSION.jar")  // 先构建 place-anywhere-core 对应版本
+    modCompileOnly files("../../../place-anywhere-core/fabric/1.21.1/build/libs/placeanywhere-0.1.0+1.21.1.jar")
 }
 
 processResources {
