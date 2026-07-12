@@ -18,9 +18,6 @@ archivesBaseName = 'betterslab'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-sourceSets {
-    main {
-        java { srcDir '../../../../src/better-slab/forge/1.19.4/java' }
         resources { srcDir '../../../../src/better-slab/forge/1.19.4/resources' }
     }
 }
