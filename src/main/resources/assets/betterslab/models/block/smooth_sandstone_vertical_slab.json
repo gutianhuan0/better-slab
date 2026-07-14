@@ -1,7 +1,7 @@
 {
     "parent": "betterslab:block/vertical_slab",
     "textures": {
-        "side": "minecraft:block/smooth_sandstone",
+        "side": "minecraft:block/sandstone_top",
         "bottom": "minecraft:block/sandstone_top",
         "top": "minecraft:block/sandstone_top"
     }
