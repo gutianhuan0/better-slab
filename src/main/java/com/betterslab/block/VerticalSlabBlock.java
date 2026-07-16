@@ -22,11 +22,11 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
     public static final MapCodec<VerticalSlabBlock> CODEC = createCodec(VerticalSlabBlock::new);
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-
+    
     public static final BooleanProperty DOUBLE = GenericVerticalSlabBlock.DOUBLE;
 
-
-
+    
+    
     protected static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 8.0);
     protected static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 8.0, 16.0, 16.0, 16.0);
     protected static final VoxelShape EAST_SHAPE  = Block.createCuboidShape(8.0, 0.0, 0.0, 16.0, 16.0, 16.0);
@@ -97,7 +97,7 @@ public class VerticalSlabBlock extends Block implements Waterloggable {
                 .with(WATERLOGGED, fluidState.isOf(Fluids.WATER) && fluidState.isStill());
     }
 
-
+    
 
 
 

@@ -116,7 +116,7 @@ public class GenericVerticalSlabBlock extends BlockWithEntity implements Waterlo
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
-
+    
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient && !player.isCreative() && world.getBlockEntity(pos) instanceof GenericVerticalSlabEntity be) {

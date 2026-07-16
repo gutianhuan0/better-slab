@@ -78,7 +78,7 @@ public class MergedSlabBlock extends BlockWithEntity implements Waterloggable {
         builder.add(ORIENTATION, FACING, WATERLOGGED);
     }
 
-
+    
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.fullCube();
@@ -118,13 +118,13 @@ public class MergedSlabBlock extends BlockWithEntity implements Waterloggable {
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
-
+    
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
-
+    
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         return super.onBreak(world, pos, state, player);

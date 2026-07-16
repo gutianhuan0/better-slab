@@ -9,7 +9,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 public class ModNetworking {
 
     public static void registerServerListeners() {
-
+        
         PayloadTypeRegistry.playC2S().register(
                 PlacementModePayload.ID,
                 PlacementModePayload.CODEC

@@ -35,7 +35,7 @@ public class MergedSlabTracker {
         BetterSlab.LOGGER.debug("Merged slab tracked at {} with {} ({})", pos, secondSlab, secondType);
     }
 
-
+    
     public static void setMerged(World world, BlockPos pos, Block secondSlab) {
         setMerged(world, pos, secondSlab, SlabType.TOP);
     }
@@ -52,7 +52,7 @@ public class MergedSlabTracker {
         return mergedData.containsKey(key(world, pos));
     }
 
-
+    
     public static boolean isMergedSlabBlock(World world, BlockPos pos) {
         return world.getBlockState(pos).getBlock() instanceof MergedSlabBlock;
     }

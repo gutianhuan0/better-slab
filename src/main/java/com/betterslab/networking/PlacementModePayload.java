@@ -16,7 +16,7 @@ public record PlacementModePayload(int modeId) implements CustomPayload {
     public static final CustomPayload.Id<PlacementModePayload> ID =
             new CustomPayload.Id<>(Identifier.of("betterslab", "placement_mode"));
 
-
+    
 
 
 

@@ -41,7 +41,7 @@ public class MergedSlabEntity extends BlockEntity {
         markDirty();
     }
 
-
+    
     public void sync() {
         if (world != null && !world.isClient && world instanceof ServerWorld sw) {
             markDirty();

@@ -14,11 +14,11 @@ import org.lwjgl.glfw.GLFW;
 
 public class ModKeyBindings {
 
-    public static KeyBinding triggerKey;
-    public static KeyBinding lockKey;
+    public static KeyBinding triggerKey;   
+    public static KeyBinding lockKey;      
     public static KeyBinding modeToggleKey;
 
-
+    
     public static final int KEY_W = GLFW.GLFW_KEY_W;
     public static final int KEY_A = GLFW.GLFW_KEY_A;
     public static final int KEY_S = GLFW.GLFW_KEY_S;
@@ -42,7 +42,7 @@ public class ModKeyBindings {
                 GLFW.GLFW_KEY_R, CATEGORY));
     }
 
-
+    
     public static boolean isMovementKeyPressed(int glfwKeyCode) {
         MinecraftClient client = MinecraftClient.getInstance();
         if (client.getWindow() == null) return false;
