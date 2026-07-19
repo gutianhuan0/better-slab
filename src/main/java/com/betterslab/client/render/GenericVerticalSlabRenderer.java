@@ -15,6 +15,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.BlockPos;
 
+
+
+
+
 public class GenericVerticalSlabRenderer implements BlockEntityRenderer<GenericVerticalSlabEntity> {
 
     public static void register() {
@@ -35,13 +39,17 @@ public class GenericVerticalSlabRenderer implements BlockEntityRenderer<GenericV
         MinecraftClient client = MinecraftClient.getInstance();
         BlockRenderManager brm = client.getBlockRenderManager();
 
+        
         renderHalf(brm, sourceState, facing, matrices, vertexConsumers, light, overlay);
 
         if (dbl) {
-
+            
             renderHalf(brm, sourceState, facing.getOpposite(), matrices, vertexConsumers, light, overlay);
         }
     }
+
+    
+
 
     private void renderHalf(BlockRenderManager brm, BlockState sourceState, Direction facing,
                             MatrixStack matrices, VertexConsumerProvider vertexConsumers,
@@ -51,10 +59,14 @@ public class GenericVerticalSlabRenderer implements BlockEntityRenderer<GenericV
         try {
             brm.renderBlockAsEntity(sourceState, matrices, vertexConsumers, light, overlay);
         } catch (Throwable ignored) {
-
+            
         }
         matrices.pop();
     }
+
+    
+
+
 
     private void applyVerticalTransform(MatrixStack matrices, Direction facing) {
         switch (facing) {

@@ -16,6 +16,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 
+
+
+
+
 public class MergedSlabEntity extends BlockEntity {
     private Block slabA = Blocks.STONE_SLAB;
     private Block slabB = Blocks.STONE_SLAB;
@@ -37,6 +41,7 @@ public class MergedSlabEntity extends BlockEntity {
         markDirty();
     }
 
+    
     public void sync() {
         if (world != null && !world.isClient && world instanceof ServerWorld sw) {
             markDirty();

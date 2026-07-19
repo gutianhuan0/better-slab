@@ -22,6 +22,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
+
+
+
+
 public class GenericVerticalSlabBlock extends BlockWithEntity implements Waterloggable {
     public static final MapCodec<GenericVerticalSlabBlock> CODEC = createCodec(GenericVerticalSlabBlock::new);
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
@@ -112,6 +116,7 @@ public class GenericVerticalSlabBlock extends BlockWithEntity implements Waterlo
         return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
+    
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient && !player.isCreative() && world.getBlockEntity(pos) instanceof GenericVerticalSlabEntity be) {

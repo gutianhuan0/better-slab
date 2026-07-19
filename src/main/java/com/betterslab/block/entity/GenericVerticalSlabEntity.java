@@ -17,6 +17,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 
+
+
+
+
 public class GenericVerticalSlabEntity extends BlockEntity {
     private Block sourceSlab = Blocks.STONE_SLAB;
 
@@ -38,6 +42,7 @@ public class GenericVerticalSlabEntity extends BlockEntity {
         markDirty();
     }
 
+    
     public void sync() {
         if (world != null && !world.isClient && world instanceof ServerWorld sw) {
             markDirty();

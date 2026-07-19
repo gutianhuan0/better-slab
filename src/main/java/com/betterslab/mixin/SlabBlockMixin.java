@@ -13,11 +13,25 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin(SlabBlock.class)
 public class SlabBlockMixin {
 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
     public VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
         if (BetterSlabConfig.get().perfectPlacement) {
             return VoxelShapes.fullCube();
         }
-
+        
         return switch (state.get(SlabBlock.TYPE)) {
             case BOTTOM -> Block.createCuboidShape(0, 0, 0, 16, 8, 16);
             case TOP -> Block.createCuboidShape(0, 8, 0, 16, 16, 16);

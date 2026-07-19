@@ -49,18 +49,20 @@ public class BlockItemMixin {
         BlockPos pos = ctx.getBlockPos();
         Direction side = ctx.getSide();
 
+        
         if (BetterSlabConfig.get().perfectPlacement
                 && !(block instanceof SlabBlock)
                 && !(block instanceof VerticalSlabBlock)
                 && !(block instanceof GenericVerticalSlabBlock)
                 && !(block instanceof MergedSlabBlock)
                 && !isMultiblockBlock(block)) {
-
+            
             if (tryPerfectPlacementOnSlab(world, pos, block, side, cir)) return;
-
+            
             if (tryPerfectPlacementOnVerticalSlab(world, pos, block, side, cir)) return;
         }
 
+        
         if (block instanceof VerticalSlabBlock) {
             if (!BetterSlabConfig.get().verticalSlab) return;
             Block sourceSlab = ModBlocks.getVanillaSlab(block);
@@ -105,7 +107,7 @@ public class BlockItemMixin {
         }
 
         if (mode == PlacementMode.AUTO_H) {
-
+            
             if (tryPlaceOnHalfHeightFreeBlock(world, pos, block, side, ctx, cir)) return;
             if (tryMergeHorizontal(world, pos, block, side, ctx, cir)) return;
             return;
@@ -127,6 +129,7 @@ public class BlockItemMixin {
         cir.cancel();
     }
 
+    
     private static boolean isMultiblockBlock(Block block) {
         if (block instanceof net.minecraft.block.DoorBlock) return true;
         if (block instanceof net.minecraft.block.BedBlock) return true;
@@ -146,27 +149,33 @@ public class BlockItemMixin {
         return false;
     }
 
+    
+
+    
+
+
+
     private static boolean tryPlaceOnHalfHeightFreeBlock(World world, BlockPos pos, Block slabBlock,
                                                           Direction side, ItemPlacementContext ctx,
                                                           CallbackInfoReturnable<ActionResult> cir) {
         if (side != Direction.UP) return false;
-
+        
         Vec3d hitPos = ctx.getHitPos();
         double queryX = hitPos.x;
         double queryY = pos.getY() - 0.1;
         double queryZ = hitPos.z;
         PlacedFreeBlock fb = FreeBlocks.getBlockAt(world, queryX, queryY, queryZ, 0.7);
         if (fb == null) return false;
-
+        
         VoxelShape shape = fb.state().getCollisionShape(world, fb.pos().toBlockPos());
         if (shape.isEmpty()) return false;
         Box box = shape.getBoundingBox();
         if (box == null) return false;
         double topY = fb.pos().y() + box.maxY;
-
+        
         double frac = topY - Math.floor(topY);
         if (frac > 0.35 && frac < 0.65) {
-
+            
             BlockState slabState = slabBlock.getDefaultState().with(SlabBlock.TYPE, SlabType.TOP);
             BlockPos placePos = pos;
             if (!world.getBlockState(placePos).canReplace(ctx)) {
@@ -180,6 +189,16 @@ public class BlockItemMixin {
         return false;
     }
 
+    
+
+    
+
+
+
+
+
+
+
     private static boolean tryPerfectPlacementOnSlab(World world, BlockPos pos, Block fullBlock, Direction side,
                                                       CallbackInfoReturnable<ActionResult> cir) {
         if (side == Direction.UP) {
@@ -187,7 +206,7 @@ public class BlockItemMixin {
             BlockState belowState = world.getBlockState(belowPos);
             if (belowState.getBlock() instanceof SlabBlock
                     && belowState.get(SlabBlock.TYPE) == SlabType.BOTTOM) {
-
+                
                 double x = belowPos.getX();
                 double y = belowPos.getY() + 0.5;
                 double z = belowPos.getZ();
@@ -202,7 +221,7 @@ public class BlockItemMixin {
             BlockState aboveState = world.getBlockState(abovePos);
             if (aboveState.getBlock() instanceof SlabBlock
                     && aboveState.get(SlabBlock.TYPE) == SlabType.TOP) {
-
+                
                 double x = abovePos.getX();
                 double y = abovePos.getY() - 0.5;
                 double z = abovePos.getZ();
@@ -215,6 +234,12 @@ public class BlockItemMixin {
         }
         return false;
     }
+
+    
+
+    
+
+
 
     private static boolean tryPerfectPlacementOnVerticalSlab(World world, BlockPos pos, Block fullBlock, Direction side,
                                                               CallbackInfoReturnable<ActionResult> cir) {
@@ -234,9 +259,10 @@ public class BlockItemMixin {
         }
 
         if (slabFacing == null) return false;
-
+        
         if (side != slabFacing.getOpposite()) return false;
 
+        
         double x = slabPos.getX() + slabFacing.getOpposite().getOffsetX() * 0.5;
         double y = slabPos.getY();
         double z = slabPos.getZ() + slabFacing.getOpposite().getOffsetZ() * 0.5;
@@ -247,6 +273,8 @@ public class BlockItemMixin {
         }
         return false;
     }
+
+    
 
     private static boolean tryMergeSameVerticalSlab(World world, BlockPos pos, Block verticalBlock,
                                                      Direction playerFacing, CallbackInfoReturnable<ActionResult> cir) {
@@ -352,6 +380,8 @@ public class BlockItemMixin {
         return s.get(GenericVerticalSlabBlock.FACING);
     }
 
+    
+
     private static boolean placeHorizontal(World world, BlockPos pos, Block slabBlock, SlabType type,
                                            Direction side, ItemPlacementContext ctx) {
         if (tryMergeHorizontal(world, pos, slabBlock, side, ctx, null)) return true;
@@ -426,6 +456,8 @@ public class BlockItemMixin {
         }
         return true;
     }
+
+    
 
     private static Direction quadrantFacing(ItemPlacementContext ctx, Direction playerFacing, Direction side) {
         BlockPos clicked = ctx.getBlockPos().offset(side.getOpposite());

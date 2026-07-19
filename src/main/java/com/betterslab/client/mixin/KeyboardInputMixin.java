@@ -10,6 +10,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+
+
+
+
 @Mixin(KeyboardInput.class)
 public abstract class KeyboardInputMixin extends Input {
 
@@ -22,11 +26,11 @@ public abstract class KeyboardInputMixin extends Input {
             this.pressingBack = false;
             this.pressingLeft = false;
             this.pressingRight = false;
-
+            
             if (ModKeyBindings.isMovementKeyPressed(ModKeyBindings.KEY_SPACE)) {
                 this.jumping = false;
             }
-
+            
         }
     }
 }

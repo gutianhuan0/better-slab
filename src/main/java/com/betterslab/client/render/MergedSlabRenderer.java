@@ -16,6 +16,15 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 
+
+
+
+
+
+
+
+
+
 public class MergedSlabRenderer implements BlockEntityRenderer<MergedSlabEntity> {
 
     public static void register() {
@@ -38,14 +47,14 @@ public class MergedSlabRenderer implements BlockEntityRenderer<MergedSlabEntity>
         BlockRenderManager brm = client.getBlockRenderManager();
 
         if (orientation == MergedSlabBlock.Orientation.HORIZONTAL) {
-
+            
             BlockState stateA = getSlabState(slabA, SlabType.BOTTOM);
             renderBlock(brm, stateA, matrices, vertexConsumers, light, overlay);
-
+            
             BlockState stateB = getSlabState(slabB, SlabType.TOP);
             renderBlock(brm, stateB, matrices, vertexConsumers, light, overlay);
         } else {
-
+            
             BlockState stateA = getSlabState(slabA, SlabType.BOTTOM);
             BlockState stateB = getSlabState(slabB, SlabType.BOTTOM);
             renderVertical(brm, stateA, facing, matrices, vertexConsumers, light, overlay);
@@ -53,6 +62,7 @@ public class MergedSlabRenderer implements BlockEntityRenderer<MergedSlabEntity>
         }
     }
 
+    
     private BlockState getSlabState(Block slab, SlabType type) {
         if (slab == null) {
             return net.minecraft.block.Blocks.AIR.getDefaultState();
@@ -64,6 +74,7 @@ public class MergedSlabRenderer implements BlockEntityRenderer<MergedSlabEntity>
         return state;
     }
 
+    
     private void renderBlock(BlockRenderManager brm, BlockState state,
                              MatrixStack matrices, VertexConsumerProvider vertexConsumers,
                              int light, int overlay) {
@@ -71,11 +82,12 @@ public class MergedSlabRenderer implements BlockEntityRenderer<MergedSlabEntity>
         try {
             brm.renderBlockAsEntity(state, matrices, vertexConsumers, light, overlay);
         } catch (Throwable ignored) {
-
+            
         }
         matrices.pop();
     }
 
+    
     private void renderVertical(BlockRenderManager brm, BlockState state, Direction facing,
                                 MatrixStack matrices, VertexConsumerProvider vertexConsumers,
                                 int light, int overlay) {
@@ -84,10 +96,15 @@ public class MergedSlabRenderer implements BlockEntityRenderer<MergedSlabEntity>
         try {
             brm.renderBlockAsEntity(state, matrices, vertexConsumers, light, overlay);
         } catch (Throwable ignored) {
-
+            
         }
         matrices.pop();
     }
+
+    
+
+
+
 
     private void applyVerticalTransform(MatrixStack matrices, Direction facing) {
         switch (facing) {

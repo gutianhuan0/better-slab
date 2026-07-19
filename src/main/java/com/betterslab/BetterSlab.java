@@ -29,6 +29,11 @@ public class BetterSlab implements ModInitializer {
         ModNetworking.registerServerListeners();
         BreakBlockHandler.register();
 
+        
+        
+        
+        
+        
         FreeBlocks.placeCallback = (world, x, y, z, qx, qy, qz, qw, state) -> {
             if (!BetterSlabConfig.get().verticalSlab) return null;
             if (!(state.getBlock() instanceof SlabBlock)) return null;
@@ -42,6 +47,7 @@ public class BetterSlab implements ModInitializer {
                     .with(GenericVerticalSlabBlock.DOUBLE, false)
                     .with(GenericVerticalSlabBlock.WATERLOGGED, false);
 
+            
             NbtCompound fullNbt;
             try {
                 var be = ((net.minecraft.block.BlockEntityProvider) ModBlocks.GENERIC_VERTICAL_SLAB)

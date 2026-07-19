@@ -31,12 +31,13 @@ public class BreakBlockHandler {
 
     public static void register() {
         PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> {
-
+            
             if (state.getBlock() instanceof MergedSlabBlock) {
                 handleMergedSlabBreak(world, player, pos, state, blockEntity);
                 return false;
             }
 
+            
             if ((state.getBlock() instanceof VerticalSlabBlock
                     || state.getBlock() instanceof GenericVerticalSlabBlock)
                     && state.get(GenericVerticalSlabBlock.DOUBLE)) {
@@ -44,6 +45,7 @@ public class BreakBlockHandler {
                 return false;
             }
 
+            
             if (state.getBlock() instanceof GenericVerticalSlabBlock) {
                 if (!player.isCreative() && blockEntity instanceof GenericVerticalSlabEntity g) {
                     Block source = g.getSourceSlab();
@@ -63,7 +65,7 @@ public class BreakBlockHandler {
             MergedSlabTracker.MergedEntry merged = MergedSlabTracker.getMerged(world, pos);
 
             if (merged == null) {
-
+                
                 if (lookingAtUpper) {
                     world.setBlockState(pos, state.with(SlabBlock.TYPE, SlabType.BOTTOM), Block.NOTIFY_ALL);
                     dropSlabItem(world, pos, state.getBlock(), player);
@@ -72,7 +74,7 @@ public class BreakBlockHandler {
                     dropSlabItem(world, pos, state.getBlock(), player);
                 }
             } else {
-
+                
                 Block aBlock = state.getBlock();
                 Block bBlock = merged.slab();
                 SlabType bType = merged.type();

@@ -58,8 +58,10 @@ public class BetterSlabClient implements ClientModInitializer {
             boolean altPressed = ModKeyBindings.triggerKey.isPressed();
             boolean holdingSlab = isHoldingSlab(client);
 
+            
             altHeldWithSlab = altPressed && holdingSlab && config.preventMovement;
 
+            
             PlacementMode altOverride = null;
             if (altHeldWithSlab) {
                 if (ModKeyBindings.isLeftPressed()) altOverride = PlacementMode.LEFT;
@@ -70,15 +72,16 @@ public class BetterSlabClient implements ClientModInitializer {
                 else if (ModKeyBindings.isBottomPressed()) altOverride = PlacementMode.BOTTOM;
             }
 
+            
             boolean cPressed = ModKeyBindings.isMovementKeyPressed(org.lwjgl.glfw.GLFW.GLFW_KEY_C);
             if (cPressed && !cWasPressed) {
                 boolean altHeld = ModKeyBindings.triggerKey.isPressed();
                 if (altHeld && altOverride != null) {
-
+                    
                     PlacementState.setLocked(client.player, altOverride);
                     notify(client, "§a已锁定: §b" + modeName(altOverride));
                 } else {
-
+                    
                     PlacementMode locked = PlacementState.getLocked(client.player);
                     if (locked != null) {
                         PlacementState.setLocked(client.player, null);
@@ -92,6 +95,7 @@ public class BetterSlabClient implements ClientModInitializer {
             }
             cWasPressed = cPressed;
 
+            
             boolean rPressed = ModKeyBindings.isMovementKeyPressed(org.lwjgl.glfw.GLFW.GLFW_KEY_R);
             if (rPressed && !rWasPressed) {
                 PlacementState.DefaultOrientation o = PlacementState.toggleDefault(client.player);
@@ -99,8 +103,9 @@ public class BetterSlabClient implements ClientModInitializer {
             }
             rWasPressed = rPressed;
 
+            
             PlacementMode effective = computeEffective(client.player, altOverride);
-
+            
             PlacementState.setMode(client.player, effective);
             if (effective.getId() != lastSentMode) {
                 ClientPlayNetworking.send(new PlacementModePayload(effective.getId()));
@@ -110,6 +115,7 @@ public class BetterSlabClient implements ClientModInitializer {
             updatePreview(client, effective, holdingSlab);
         });
 
+        
         WorldRenderEvents.AFTER_TRANSLUCENT.register(context -> {
             if (context.consumers() == null) return;
             renderPreview(context.matrixStack(), context.camera().getPos(), context.consumers());
@@ -144,6 +150,7 @@ public class BetterSlabClient implements ClientModInitializer {
 
         Direction playerFacing = client.player.getHorizontalFacing();
 
+        
         if (mode == PlacementMode.LEFT) {
             setVerticalPreview(client, pos, slabBlock, playerFacing.rotateYCounterclockwise());
             return;
@@ -172,13 +179,13 @@ public class BetterSlabClient implements ClientModInitializer {
         }
 
         if (mode == PlacementMode.AUTO_H) {
-
+            
             if (side.getAxis() == Direction.Axis.Y) {
                 SlabType t = side == Direction.UP ? SlabType.BOTTOM : SlabType.TOP;
                 previewPos = pos;
                 previewState = slabBlock.getDefaultState().with(SlabBlock.TYPE, t);
             }
-
+            
             return;
         }
 
@@ -204,7 +211,7 @@ public class BetterSlabClient implements ClientModInitializer {
     }
 
     private static Direction quadrantFacingPreview(BlockHitResult blockHit, BlockPos pos, Direction side, Direction playerFacing) {
-
+        
         BlockPos clicked = pos.offset(side.getOpposite());
         Vec3d hit = blockHit.getPos();
         double dx = hit.x - clicked.getX() - 0.5;
@@ -246,7 +253,7 @@ public class BetterSlabClient implements ClientModInitializer {
                     box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ,
                     r, g, b, a);
         } catch (Throwable ignored) {
-
+            
         }
         matrices.pop();
     }

@@ -16,12 +16,16 @@ import java.util.HashMap;
 
 public class ModBlocks {
 
+    
     private static final HashMap<Block, Block> VANILLA_TO_VERTICAL = new HashMap<>();
 
+    
     private static final HashMap<Block, Block> VERTICAL_TO_VANILLA = new HashMap<>();
 
+    
     public static Block GENERIC_VERTICAL_SLAB;
 
+    
     public static Block MERGED_SLAB;
 
     private static final Block[] VANILLA_SLABS = {
@@ -44,7 +48,7 @@ public class ModBlocks {
     private static final String VERTICAL_SUFFIX = "_vertical_slab";
 
     public static void registerModBlocks() {
-
+        
         for (Block vanillaSlab : VANILLA_SLABS) {
             Identifier vanillaId = Registries.BLOCK.getId(vanillaSlab);
             String path = vanillaId.getPath();
@@ -67,12 +71,14 @@ public class ModBlocks {
             VERTICAL_TO_VANILLA.put(verticalSlab, vanillaSlab);
         }
 
+        
         GENERIC_VERTICAL_SLAB = Registry.register(
                 Registries.BLOCK,
                 Identifier.of(BetterSlab.MOD_ID, "generic_vertical_slab"),
                 new GenericVerticalSlabBlock(AbstractBlock.Settings.copy(Blocks.STONE).nonOpaque())
         );
 
+        
         MERGED_SLAB = Registry.register(
                 Registries.BLOCK,
                 Identifier.of(BetterSlab.MOD_ID, "merged_slab"),
@@ -80,14 +86,17 @@ public class ModBlocks {
         );
     }
 
+    
     public static Block getVerticalSlab(Block vanillaSlab) {
         return VANILLA_TO_VERTICAL.get(vanillaSlab);
     }
 
+    
     public static Block getVanillaSlab(Block verticalSlab) {
         return VERTICAL_TO_VANILLA.get(verticalSlab);
     }
 
+    
     public static boolean hasDedicatedVertical(Block slab) {
         return VANILLA_TO_VERTICAL.containsKey(slab);
     }
